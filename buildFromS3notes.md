@@ -53,7 +53,7 @@
 
 **creates one joined symbol - .Q.dd[first vs x] name;** -:/mnt/dev_env/data/tplog/2019.05.06/genhousekeeping-1/APATrade.1184589.tickerplant-9-buildFromS3.genhousekeeping-1.i-03c02d12467ecdbd8.eu-west-1.aws.nomura.com.20201015D143758080556000
 
-**hopen tplog **- open handle to tplog
+**hopen tplog**- open handle to tplog
 
 
 ```
@@ -83,8 +83,13 @@
  };
 ```
 
-**data variable assingnment** - updating the empty table with the data and new function
 
+**t** - tablename e.g. APATrade
+**x** - data from table 
+**data:.hk.tmp.func[t;.hk.tmp.buffer upsert flip x];** - updating the empty table with the data (x) and new function
+
+**if[98h = type data; data: value flip data];** - check data is a table, then flip to dict
+**.hk.tmp.tplogHandle enlist (upd;t;data);** - upload new table with updated data to include function
 
 ```
 .hk.buildFromS3.handleError:{[e;s] 
@@ -93,6 +98,8 @@
 	'e 
  };
 ```
+**Error Handling** - will be called if the .Q.trp is iniitalised.
+
 
 ```
 .hk.buildFromS3.runInner:{[dt;tab;function] 
@@ -110,7 +117,7 @@
 	.hk.buildFromS3.clear[];
 };
 ```
-function to call each part of the script
+**.hk.buildFromS3.runInner:{[dt;tab;function]** - function to call each part of the script
 upload and send replay tasks are taken from the .hk.buildFromHDB namespace
 
 ```
