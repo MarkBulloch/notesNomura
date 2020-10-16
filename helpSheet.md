@@ -101,10 +101,3 @@ time                          isin         cusip       alias     bondType sec..
 2019.10.19D07:11:34.444600000 GB00BDRHNP05 "00BDRHNP0" "1q27"    FIX      Gil..
 2019.10.19D07:11:34.444600000 GB00BFWFPP71 "00BFWFPP7" "1T49"    FIX      Gil..
 ```
-
-
-
-if[system"e";
-    /.hk.buildFromS3.run[2019.10.19;`BlendedModel;`.hk.buildFromS3.bm.skew];
-    .hk.buildFromS3.run[2019.05.06;`APATrade;{[t;x] update mid:time from x}];
-    ];
