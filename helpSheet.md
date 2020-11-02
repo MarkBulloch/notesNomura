@@ -101,3 +101,23 @@ time                          isin         cusip       alias     bondType sec..
 2019.10.19D07:11:34.444600000 GB00BDRHNP05 "00BDRHNP0" "1q27"    FIX      Gil..
 2019.10.19D07:11:34.444600000 GB00BFWFPP71 "00BFWFPP7" "1T49"    FIX      Gil..
 ```
+
+
+**Update ASG (e.g. genhousekeeper in POC to not shutdown)**
+
+1. Go to AWS console (POC) and then EC2
+2. From EC2 select Auto Scaling Groups from LHS
+3. Select name of ASG - KDB-DATALAKE-PROD-Oct-17-v2-GenHousekeepingAutoscalingGroup-1LEAM4KWX8QPK
+4. Under group details update desired capacity from 0 -> 1
+5. Change minimum capacity from 0 -> 1
+
+	
+	
+**Add filter to instance to stop alert emails**
+1. Go to AWS console
+2. Select cloud formation
+3. Filter for a stack name starting with cloud and select prod
+4. Select update
+5. Use current template
+6. Under specify stack details, update the FilterIgnorePattern to include your filter e.g. Call to terminate housekeeping instance failed
+7. Save and stack will update
