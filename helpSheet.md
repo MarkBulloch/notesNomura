@@ -24,10 +24,9 @@ May need to change config.json file on dev-env to pull from different S3 bucket.
 
 
 
+# Turn log into table
 
-**Turn log into table**
-
-Get the table cols:
+## Get the table cols:
 ```
 q)get `$"BlendedModel.0.tickerplant-1.ctp.redlxp00322.20191019D104011295688000"
 `.u.regCols `BlendedModel `time`isin`cusip`alias`bondType`sector`b2CStatus`be..
@@ -56,7 +55,7 @@ time isin cusip alias bondType sector b2CStatus benchmark book radialId tokyo..
 -----------------------------------------------------------------------------..
 ```
 
-Get the data:
+## Get the data:
 ```
 q)last x
 `upd
@@ -92,7 +91,7 @@ q)d
 ```
 
 
-Upsert the data to table
+## Upsert the data to table
 ```
 q)t upsert d
 time                          isin         cusip       alias     bondType sec..
@@ -103,7 +102,7 @@ time                          isin         cusip       alias     bondType sec..
 ```
 
 
-**Update ASG (e.g. genhousekeeper in POC to not shutdown)**
+# Update ASG (e.g. genhousekeeper in POC to not shutdown)
 
 1. Go to AWS console (POC) and then EC2
 2. From EC2 select Auto Scaling Groups from LHS
@@ -113,7 +112,7 @@ time                          isin         cusip       alias     bondType sec..
 
 	
 	
-**Add filter to instance to stop alert emails**
+# Add filter to instance to stop alert emails 
 1. Go to AWS console
 2. Select cloud formation
 3. Filter for a stack name starting with cloud and select prod
