@@ -1,6 +1,6 @@
 **Setup New AWS Stack**
 
-#s Steps:
+#Steps:
 1. Download launch development-setup (non-prod) from here:
 https://gitlab.nomura.com/GM-AILabs-CTB/ailabs-developers-setup
 
