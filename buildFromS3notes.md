@@ -23,11 +23,11 @@
  };
 ```
 
-**newTplog assingnment** - calls the .setUpNewLog function passing in the tplog as an argument 
-`.lg.o` - log out message to console e.g. above will print Replaying logfileName 
-`11!` - replay tplog 
-`hclose` - close the handle to the tplog 
-`newTplog` - without semi colon is standard to display the file to the console
+**newTplog assingnment** - calls the .setUpNewLog function passing in the tplog as an argument   
+`.lg.o` - log out message to console e.g. above will print Replaying logfileName   
+`11!` - replay tplog  
+`hclose` - close the handle to the tplog  
+`newTplog` - without semi colon is standard to display the file to the console  
 
 ```q
 .hk.buildFromS3.setUpNewLog:{[x] 
