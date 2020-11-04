@@ -27,7 +27,7 @@ May need to change config.json file on dev-env to pull from different S3 bucket.
 # Turn log into table
 
 ## Get the table cols:
-```
+```q
 q)get `$"BlendedModel.0.tickerplant-1.ctp.redlxp00322.20191019D104011295688000"
 `.u.regCols `BlendedModel `time`isin`cusip`alias`bondType`sector`b2CStatus`be..
 `upd        `BlendedModel (`s#2019.10.19D07:11:34.443800000 2019.10.19D07:11:..
@@ -45,7 +45,7 @@ q)reg
 `time`isin`cusip`alias`bondType`sector`b2CStatus`benchmark`book`radialId`toky..
 ```
 
-```
+```q
 q)flip reg[2]
 time isin cusip alias bondType sector b2CStatus benchmark book radialId tokyo..
 -----------------------------------------------------------------------------..
@@ -56,7 +56,7 @@ time isin cusip alias bondType sector b2CStatus benchmark book radialId tokyo..
 ```
 
 ## Get the data:
-```
+```q
 q)last x
 `upd
 `BlendedModel
@@ -92,7 +92,7 @@ q)d
 
 
 ## Upsert the data to table
-```
+```q
 q)t upsert d
 time                          isin         cusip       alias     bondType sec..
 -----------------------------------------------------------------------------..
