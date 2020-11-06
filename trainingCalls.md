@@ -107,7 +107,7 @@ q)roundDown 4.1 4.3 4.5 4.8 5.0
 ```q
 toFloat:$["f";]
 ```
-cast to a float
+projecting the second param, will always cast to type float
 ```q
 q)toFloat 1 2 3
 1 2 3f
