@@ -107,7 +107,7 @@ q)roundDown 4.1 4.3 4.5 4.8 5.0
 ```q
 toFloat:$["f";]
 ```
-
+cast to a float
 ```q
 q)toFloat 1 2 3
 1 2 3f
@@ -116,7 +116,7 @@ q)toFloat 1 2 3
 ```q
 isZero:=[0;]
 ```
-
+projection created - is x=0, 1b if true, 0b if not
 ```q
 q)isZero 0
 1b
@@ -133,7 +133,7 @@ q)isZero 0b
 ```q
 isZeroLong:~[0j;]
 ```
-
+projection created to check if x is 0 and type long
 ```q
 q)isZeroLong 0
 1b
@@ -148,7 +148,7 @@ q)isZeroLong 0i
 ```q
 halve:%[;2]
 ```
-
+projection created as divide takes two params so will always be divided by 2
 ```q
 q)halve 2 3 4 5
 1 1.5 2 2.5
