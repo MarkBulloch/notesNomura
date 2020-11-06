@@ -104,14 +104,20 @@ q)roundDown 4.1 4.3 4.5 4.8 5.0
 
 # Projections
 
+```q
+toFloat:$["f";]
+```
 
-toFloat
+```q
+q)toFloat 1 2 3
+1 2 3f
+```
+---
+```q
+isZero:=[0;]
+```
 
-
-  q)toFloat 1 2 3
-  1 2 3f
-isZero
-
+```q
 q)isZero 0
 1b
 q)isZero 5
@@ -122,9 +128,13 @@ q)isZero 0x00
 1b
 q)isZero 0b
 1b
-isZeroLong
-Expected output:
+```
+---
+```q
+isZeroLong:~[0j;]
+```
 
+```q
 q)isZeroLong 0
 1b
 q)isZeroLong 1
@@ -133,10 +143,13 @@ q)isZeroLong 0h
 0b
 q)isZeroLong 0i
 0b
-halve
-Expected output:
+```
+---
+```q
+halve:%[;2]
+```
 
-q)halve 100
-50f
+```q
 q)halve 2 3 4 5
 1 1.5 2 2.5
+```
