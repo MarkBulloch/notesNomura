@@ -42,6 +42,7 @@ q)dropLastTwoItems "abcde"
 ```q
 transpose:{flip x}
 ```
+flips the lists from horizontal to vertical
 ```q
 q)transpose(1 2 3 4;10 20 30 40;100 200 300 400)
 1 10 100
@@ -53,7 +54,8 @@ q)transpose(1 2 3 4;10 20 30 40;100 200 300 400)
 ```q
 getIndexOf:{x?y} OR getIndexOf:{where x=y}
 ```
-
+`?` - find x in y
+`=` - to find match between x/y
  ```q
 q)getIndexOf[`john`mike`pat`tim`harry;`pat]
 2
@@ -62,6 +64,9 @@ q)getIndexOf[`john`mike`pat`tim`harry;`pat]
 ```q
 firstDayOfNextMonth:{"d"$1+"m"$x}
 ```
+cast x (date) to a month e.g. 2020.01
++1 to the date: 2020.01+1=02
+cast back to a day which will always give the first day of the month
 ```q
 q)firstDayOfNextMonth 2020.01.01
 2020.02.01
@@ -75,9 +80,9 @@ q)firstDayOfNextMonth 2020.02.27
 ---
 ```q
 whereDivisibleBy:{x where 0=x mod y}
-
 ```
-
+`1 3 5 6 10 20 mod 5 = 1 3 0 1 0 0 `
+show x where `0=x`
 ```q
 q)whereDivisibleBy[1 3 5 6 10 20;5]
 5 10 20
@@ -86,7 +91,7 @@ q)whereDivisibleBy[1 3 5 6 10 20;5]
 ```q
 roundDown:{floor x}
 ```
-
+floor operator will always round down
 ```q
 q)roundDown 4.1
 4
