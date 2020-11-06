@@ -1,3 +1,10 @@
+Functions
+
+```q
+isWholeNumber:{type[x] in (-5h;-6h;-7h)}
+```
+Is type of x = short, int or long, if so 1b, else 0b
+```q
 q)isWholeNumber 4.5
 0b
 q)isWholeNumber 4
@@ -8,7 +15,7 @@ q)isWholeNumber 4j
 1b
 q)isWholeNumber"a"
 0b
-
+```
 q)doubleSecondItem 10 20 30 40 50
 10 40 30 40 50
 
