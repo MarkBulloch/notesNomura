@@ -16,6 +16,7 @@ q)isWholeNumber 4j
 q)isWholeNumber"a"
 0b
 ```
+---
 ```q
 doubleSecondItem:{@[x;1;*;2]} 
 ```
