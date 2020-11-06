@@ -26,7 +26,7 @@ doubleSecondItem:{@[x;1;*;2]}
 q)doubleSecondItem 10 20 30 40 50
 10 40 30 40 50
 ```
-
+---
 ```q
 dropLastTwoItems:{-2_x}
 ```
@@ -38,7 +38,7 @@ q)dropLastTwoItems 1 2 3 4
 q)dropLastTwoItems "abcde"
 "abc"
 ```
-
+---
 ```q
 transpose:{flip x}
 ```
@@ -49,6 +49,7 @@ q)transpose(1 2 3 4;10 20 30 40;100 200 300 400)
 3 30 300
 4 40 400
 ```
+---
 ```q
 getIndexOf:{x?y} OR getIndexOf:{where x=y}
 ```
@@ -57,7 +58,7 @@ getIndexOf:{x?y} OR getIndexOf:{where x=y}
 q)getIndexOf[`john`mike`pat`tim`harry;`pat]
 2
 ```
-
+---
 ```q
 firstDayOfNextMonth:{"d"$1+"m"$x}
 ```
@@ -71,6 +72,7 @@ q)firstDayOfNextMonth 2020.01.31
 q)firstDayOfNextMonth 2020.02.27
 2020.03.01
 ```
+---
 ```q
 whereDivisibleBy:{x where 0=x mod y}
 
@@ -80,7 +82,7 @@ whereDivisibleBy:{x where 0=x mod y}
 q)whereDivisibleBy[1 3 5 6 10 20;5]
 5 10 20
 ```
-
+---
 ```q
 roundDown:{floor x}
 ```
@@ -91,7 +93,7 @@ q)roundDown 4.1
 q)roundDown 4.1 4.3 4.5 4.8 5.0
 4 4 4 4 5
 ```
-
+---
 
 
 
