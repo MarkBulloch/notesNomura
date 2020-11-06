@@ -1,4 +1,4 @@
-Functions
+# Functions
 
 ```q
 isWholeNumber:{type[x] in (-5h;-6h;-7h)}
@@ -16,28 +16,51 @@ q)isWholeNumber 4j
 q)isWholeNumber"a"
 0b
 ```
+```q
+doubleSecondItem:{@[x;1;*;2]} 
+```
+`@` - ammend at the 1st index of x and double value.
+
+```q
 q)doubleSecondItem 10 20 30 40 50
 10 40 30 40 50
+```
 
-
+```q
+dropLastTwoItems:{-2_x}
+```
+`-2` - (last 2)  
+`_` - drop/cut operator
+```q
 q)dropLastTwoItems 1 2 3 4
 1 2
 q)dropLastTwoItems "abcde"
 "abc"
+```
 
-
+```q
+transpose:{flip x}
+```
+```q
 q)transpose(1 2 3 4;10 20 30 40;100 200 300 400)
 1 10 100
 2 20 200
 3 30 300
 4 40 400
+```
+```q
+getIndexOf:{x?y} OR getIndexOf:{where x=y}
+```
 
-
-
+ ```q
 q)getIndexOf[`john`mike`pat`tim`harry;`pat]
 2
+```
 
-
+```q
+firstDayOfNextMonth:{"d"$1+"m"$x}
+```
+```q
 q)firstDayOfNextMonth 2020.01.01
 2020.02.01
 q)firstDayOfNextMonth 2020.01.11
@@ -46,22 +69,32 @@ q)firstDayOfNextMonth 2020.01.31
 2020.02.01
 q)firstDayOfNextMonth 2020.02.27
 2020.03.01
+```
+```q
+whereDivisibleBy:{x where 0=x mod y}
 
+```
 
-
-
+```q
 q)whereDivisibleBy[1 3 5 6 10 20;5]
 5 10 20
+```
 
+```q
+roundDown:{floor x}
+```
 
+```q
 q)roundDown 4.1
 4
 q)roundDown 4.1 4.3 4.5 4.8 5.0
 4 4 4 4 5
+```
 
 
 
-Projections
+
+# Projections
 
 
 toFloat
