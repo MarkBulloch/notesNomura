@@ -158,7 +158,7 @@ q)halve 2 3 4 5
 ```q
 fromDelimitedString:{y$x vs z}    
 ```
-
+Split string (z) where comma occurs (x), and cast to y ("SJF*") - pass in like this when casting a list
 ```q
 fromDelimitedString[",";"SJF*";"JPM,100,4.5,test string"]
 `JPM
@@ -169,7 +169,7 @@ fromDelimitedString[",";"SJF*";"JPM,100,4.5,test string"]
 ```q
 toFullName:{`$" " sv string[x, y]} 
 ```
-
+cast x and y to a string, then form one string with a space in the middle via " " sv, cast back to one symbol 
 ```q
 toFullName[`John;`Murphy]
 `John Murphy
@@ -177,6 +177,7 @@ toFullName[`John;`Murphy]
 ```q
 roundToNearest:{"j"$x}  
 ```
+casting to a long will always round to the nearest
 ```q
 q)roundToNearest 4.1 4.3 4.5 4.8 5.0
 4 4 5 5 5
@@ -188,6 +189,7 @@ q)roundToNearest 4.1 4.3 4.5 4.8 5.0
 ```q
 ensureStr:{$[10h=type x;x;string x]}           
 ```
+if else statement - check the type of x is a string, if true then return x, if false then string x
 ```q
 q)ensureStr"a"
 ,"a"                    // should return a string if passed a char
@@ -203,7 +205,7 @@ q)ensureStr 10
 ```q
 isAllCaps:{x~upper x}
 ```
-
+check x matches the equivalent of upper (capital) x and return boolean
 ```q
 isAllCaps"a"
 0b
@@ -219,23 +221,9 @@ isAllCaps "ABC|~"
 1b
 ```
 ```q
-ensureStr:{$[10h=type x;x;string x]}
-```
-```q
-q)ensureStr"a"
-,"a"                    // should return a string if passed a char
-q)ensureStr"abc"
-"abc"
-q)ensureStr`abc
-"abc"
-q)ensureStr 2
-,"2"
-q)ensureStr 10
-"10"
-```
-```q
 startsWith:{y~3#x}               
 ```
+check whether y (abc/bc) matches the first 3 letters of x (abcdef) - will return boolean
 ```q
 startsWith["abcdef";"abc"]
 1b
