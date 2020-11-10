@@ -153,3 +153,92 @@ projection created as divide takes two params so will always be divided by 2
 q)halve 2 3 4 5
 1 1.5 2 2.5
 ```
+
+# Cast
+```q
+fromDelimitedString:{y$x vs z}    
+```
+
+```q
+fromDelimitedString[",";"SJF*";"JPM,100,4.5,test string"]
+`JPM
+100
+4.5
+"test string"
+```
+```q
+toFullName:{`$" " sv string[x, y]} 
+```
+
+```q
+toFullName[`John;`Murphy]
+`John Murphy
+```
+```q
+roundToNearest:{"j"$x}  
+```
+```q
+q)roundToNearest 4.1 4.3 4.5 4.8 5.0
+4 4 5 5 5
+```
+
+
+# Execution Control
+
+```q
+ensureStr:{$[10h=type x;x;string x]}           
+```
+```q
+q)ensureStr"a"
+,"a"                    // should return a string if passed a char
+q)ensureStr"abc"
+"abc"
+q)ensureStr`abc
+"abc"
+q)ensureStr 2
+,"2"
+q)ensureStr 10
+"10"
+```
+```q
+isAllCaps:{x~upper x}
+```
+
+```q
+isAllCaps"a"
+0b
+isAllCaps"A"
+1b
+isAllCaps"aaB"
+0b
+isAllCaps"BBB"
+1b
+isAllCaps"ABC_123"
+1b
+isAllCaps "ABC|~"
+1b
+```
+```q
+ensureStr:{$[10h=type x;x;string x]}
+```
+```q
+q)ensureStr"a"
+,"a"                    // should return a string if passed a char
+q)ensureStr"abc"
+"abc"
+q)ensureStr`abc
+"abc"
+q)ensureStr 2
+,"2"
+q)ensureStr 10
+"10"
+```
+```q
+startsWith:{y~3#x}               
+```
+```q
+startsWith["abcdef";"abc"]
+1b
+startsWith["abcdef";"bc"]
+0b
+```
