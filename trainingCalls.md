@@ -166,6 +166,7 @@ fromDelimitedString[",";"SJF*";"JPM,100,4.5,test string"]
 4.5
 "test string"
 ```
+---
 ```q
 toFullName:{`$" " sv string[x, y]} 
 ```
@@ -174,6 +175,7 @@ cast x and y to a string, then form one string with a space in the middle via " 
 toFullName[`John;`Murphy]
 `John Murphy
 ```
+---
 ```q
 roundToNearest:{"j"$x}  
 ```
@@ -182,7 +184,7 @@ casting to a long will always round to the nearest
 q)roundToNearest 4.1 4.3 4.5 4.8 5.0
 4 4 5 5 5
 ```
-
+---
 
 # Execution Control
 
@@ -202,6 +204,7 @@ q)ensureStr 2
 q)ensureStr 10
 "10"
 ```
+---
 ```q
 isAllCaps:{x~upper x}
 ```
@@ -220,6 +223,7 @@ isAllCaps"ABC_123"
 isAllCaps "ABC|~"
 1b
 ```
+---
 ```q
 startsWith:{y~3#x}               
 ```
@@ -230,7 +234,7 @@ startsWith["abcdef";"abc"]
 startsWith["abcdef";"bc"]
 0b
 ```
-
+---
 
 # Iterators
 ```q
@@ -244,7 +248,7 @@ myMax 3 6 2 9
 myMax -6 -9 -11 4
 4
 ```
-
+---
 ```q
 myMin:{(&/) x}
 ```
@@ -256,7 +260,7 @@ myMin 3 6 2 9
 myMin 17 -10 3
 -10
 ```
-
+---
 ```q
 myCount:{1+ max rank x}
 ```
@@ -269,6 +273,7 @@ myCount 5 7 9
 myCount "hi there"
 8
 ```
+---
 ```q
 myDistinct:{key group x}
 ```
@@ -279,7 +284,7 @@ myDistinct 4 2 2 3 3 1
 myDistinct "ctcttft"
 "ctf"
 ```
-
+---
 
 # Dictionaries
 ```q
@@ -292,7 +297,7 @@ k| 1
 d| 2
 b| 3
 ```
-
+---
 ```q
 dictToTable:{$[all 1=count each value x;enlist x;flip x]}
 ```
@@ -313,7 +318,7 @@ k   d   b
 a  this 1
 b  is   2
 ```
-
+---
 ```q
 countHandles:{count each x}
 ```
@@ -324,7 +329,7 @@ k| 11
 d| 3
 b| 1
 ```
-
+---
 ```q
 removeHandles:{
     a:0;
@@ -345,3 +350,4 @@ t| `int$()
 q| `int$()
 b| ,101i
 ```
+---
