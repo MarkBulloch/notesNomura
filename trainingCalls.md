@@ -230,3 +230,16 @@ startsWith["abcdef";"abc"]
 startsWith["abcdef";"bc"]
 0b
 ```
+
+
+# Iterators
+
+
+
+
+
+
+
+
+
+# Dictionaries
