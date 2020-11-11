@@ -233,13 +233,106 @@ startsWith["abcdef";"bc"]
 
 
 # Iterators
+```q
+myMax:{(|/) x}
+```
 
+```q
+myMax 3 6 2 9
+9
 
+myMax -6 -9 -11 4
+4
+```
 
+```q
+myMin:{(&/) x}
+```
 
+```q
+myMin 3 6 2 9
+2
 
+myMin 17 -10 3
+-10
+```
 
+```q
+myCount:{1+ max rank x}
+```
 
+```q
+myDistinct:{key group x}
+```
+```q
+myDistinct 4 2 2 3 3 1
+4 2 3 1
+myDistinct "ctcttft"
+"ctf"
+```
 
 
 # Dictionaries
+```q
+createDict:{x!y}
+```
+
+```q
+createDict["kdb";1 2 3]
+k| 1
+d| 2
+b| 3
+```
+
+```q
+dictToTable:{$[all 1=count each value x;enlist x;flip x]}
+```
+
+```q
+dictToTable `k`d`b!0.1 0.2 0.3                                // works when values are atoms
+k   d   b  
+-----------
+0.1 0.2 0.3
+dictToTable `k`d`b!(0.1 1; 0.2 2; 0.3 3)                      //works when values are lists
+k   d   b  
+-----------
+0.1 0.2 0.3
+1   2   3
+dictToTable `k`d`b!("ab";`this`is;1 2 )                      //works when values are other types
+k   d   b  
+-----------
+a  this 1
+b  is   2
+```
+
+```q
+countHandles:{count each x}
+```
+
+```q
+countHandles`k`d`b!("HELLO_WORLD";`k`d`b;enlist 7)
+k| 11
+d| 3
+b| 1
+```
+
+```q
+removeHandles:{
+    a:0;
+    while[a<count key x;
+        x[key[x][a]]:x[key[x][a]] except y;
+        a+:1];
+    x}
+```
+
+```q
+removeHandles["tqb"!(110 112i;enlist 110i;110 101i);110i]    // using integers in this example, should work the same for longs
+t| ,112i
+q| `int$()
+b| ,101i
+
+removeHandles["tqb"!(110 112i;enlist 110i;110 101i);110 112i]     // should work for list of handles also
+t| `int$()
+q| `int$()
+b| ,101i
+```
