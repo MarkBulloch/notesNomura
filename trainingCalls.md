@@ -236,7 +236,7 @@ startsWith["abcdef";"bc"]
 ```q
 myMax:{(|/) x}
 ```
-
+use `over` iterator along with the max `(|)` to find the maximum of the list
 ```q
 myMax 3 6 2 9
 9
@@ -248,7 +248,7 @@ myMax -6 -9 -11 4
 ```q
 myMin:{(&/) x}
 ```
-
+use `over` iterator along with the min `(&)` to find the minimum of the list
 ```q
 myMin 3 6 2 9
 2
@@ -260,10 +260,19 @@ myMin 17 -10 3
 ```q
 myCount:{1+ max rank x}
 ```
+`rank` returns the indexes of where values would occur in a sorted list, getting the maximum index+1 will return the count of the list
 
+```q
+myCount 5 7 9
+3
+
+myCount "hi there"
+8
+```
 ```q
 myDistinct:{key group x}
 ```
+group x returns a dictionaries of distinct keys and their indexes, key this dictionary to just return the distinct values
 ```q
 myDistinct 4 2 2 3 3 1
 4 2 3 1
@@ -276,7 +285,7 @@ myDistinct "ctcttft"
 ```q
 createDict:{x!y}
 ```
-
+self explanatory - key!value
 ```q
 createDict["kdb";1 2 3]
 k| 1
@@ -287,7 +296,7 @@ b| 3
 ```q
 dictToTable:{$[all 1=count each value x;enlist x;flip x]}
 ```
-
+if else statement - if the count of x=1 then enlist the dictionary to form a table, else flip the dictionary (count>1) to form a table
 ```q
 dictToTable `k`d`b!0.1 0.2 0.3                                // works when values are atoms
 k   d   b  
@@ -308,7 +317,7 @@ b  is   2
 ```q
 countHandles:{count each x}
 ```
-
+count each dictionary value and return another dictionary
 ```q
 countHandles`k`d`b!("HELLO_WORLD";`k`d`b;enlist 7)
 k| 11
@@ -324,7 +333,7 @@ removeHandles:{
         a+:1];
     x}
 ```
-
+complex soloution which Ryan developed, try find simpler way to achieve this
 ```q
 removeHandles["tqb"!(110 112i;enlist 110i;110 101i);110i]    // using integers in this example, should work the same for longs
 t| ,112i
