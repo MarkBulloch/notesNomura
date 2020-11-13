@@ -130,4 +130,8 @@ Add function to `Post Release Tasks - To be run on Saturday` section
 Important to note - keep all in one function, avoid setting global variables
 
 `.task.addMultipleTasks` takes 5 params:
-* dates - defined in args[0] as dts
+* date - defined in args[0] as dts
+* table - defined in args[1] as `BlendedModel`
+* process - genhousekeeping
+* function - defined as `.hk.buildFromS3.run` (function to actually run tasks)
+* arguments - defined as args(needs to be flipped) - arguments to the function .i.e in this case dates, table, func
