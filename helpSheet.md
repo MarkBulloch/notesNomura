@@ -19,7 +19,7 @@ https://sso-core-prd.nomura.com/am/saml2/jsp/idpSSOInit.jsp?spEntityID=urn:amazo
 To take out of spot - remove spot param from template
 May need to change config.json file on dev-env to pull from different S3 bucket.
 
-
+---
 
 
 
@@ -100,7 +100,7 @@ time                          isin         cusip       alias     bondType sec..
 2019.10.19D07:11:34.444600000 GB00BDRHNP05 "00BDRHNP0" "1q27"    FIX      Gil..
 2019.10.19D07:11:34.444600000 GB00BFWFPP71 "00BFWFPP7" "1T49"    FIX      Gil..
 ```
-
+---
 
 # Update ASG (e.g. genhousekeeper in POC to not shutdown)
 
@@ -109,7 +109,7 @@ time                          isin         cusip       alias     bondType sec..
 3. Select name of ASG - KDB-DATALAKE-PROD-Oct-17-v2-GenHousekeepingAutoscalingGroup-1LEAM4KWX8QPK
 4. Under group details update desired capacity from 0 -> 1
 5. Change minimum capacity from 0 -> 1
-
+---
 	
 	
 # Add filter to instance to stop alert emails 
@@ -120,3 +120,12 @@ time                          isin         cusip       alias     bondType sec..
 5. Use current template
 6. Under specify stack details, update the FilterIgnorePattern to include your filter e.g. Call to terminate housekeeping instance failed
 7. Save and stack will update
+---
+# Adding Tasks to TASKS table for release
+Add function to `Post Release Tasks - To be run on Saturday` section  
+
+```q
+{[sd;ed] dts:sd+til 1+ed-st; n:count dts; args:flip(dts;n#`BlendedModel;n#`.hk.buildFromS3.bm.skew); .task.addMultipleTasks . (args[;0];args[;1];n#`genhousekeeping;n#`.hk.buildFromS3.run;args)}[2019.10.19;2020.09.18]
+```
+Important to note - keep all in one function, avoid setting global variables
+
