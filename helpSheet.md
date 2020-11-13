@@ -129,3 +129,5 @@ Add function to `Post Release Tasks - To be run on Saturday` section
 ```
 Important to note - keep all in one function, avoid setting global variables
 
+`.task.addMultipleTasks` takes 5 params:
+* dates - defined in args[0] as dts
