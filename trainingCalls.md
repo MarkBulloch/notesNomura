@@ -352,22 +352,86 @@ b| ,101i
 ```
 ---
 # Tables
+Define the following two tables with the corresponding columns and types:
 
+trade
 
+time (timestamp)
+sym (symbol)
+size (long)
+price (long)
+side (symbol)
+exchange (symbol)
 
+quote
+time (timestamp)
+sym (symbol)
+bid (long)
+ask (long)
+bidSize (long)
+askSize (long)
+exchange (symbol)
+Define a variable BATCH and assign it the value 1b (true)
 
+```q
+trade:flip `time`sym`size`price`side`exchange!"psjjss"$\:()
+quote:flip `time`sym`bid`ask`bidSize`askSize`exchange!"psjjjjs"\:()
+BATCH:1b
+```
+---
+```q
+dictToTable:{$[all 1=count each value x;enlist x;flip x]}
+upd:{[t;d] $[BATCH~1b;t insert d;dictToTable cols[t]!d]}
+```
+Uses code from dictionaries functions quiz
+```q
+BATCH:0b                                                                // start by testing in non-batch mode
+upd[`trade;(2#.z.P;`ASD`IBM;300 400;4000 6000;`O`P;`N`D)]                    // test with two records
+time                          sym size price side exchange                    // copy of table returned
+----------------------------------------------------------
+2016.03.19D12:17:50.871658000 ASD 300  4000  O    N
+2016.03.19D12:17:50.871658000 IBM 400  6000  P    D
+trade                                                                // underlying table should be unchanged
+time sym size price side exchange
+---------------------------------
+```
+---
+```q
+returnKeyedTable:{[t;k] count [k]!k xcols t}
+```
 
+```q
+Example of Code:
 
+returnKeyedTable[`trade;`sym]                                        // returns a keys version of the table
+sym| time                          size price side exchange
+---| ------------------------------------------------------
+GE | 2016.04.22D15:02:31.169380000 150  1025  B    N
+BP | 2016.04.22D15:02:31.169380000 210  1050  S    L
 
+trade                                                                // but doesn't alter the underlying table (trade)
+time                          sym size price side exchange
+----------------------------------------------------------
+2016.04.22D15:02:31.169380000 GE  150  1025  B    N
+2016.04.22D15:02:31.169380000 BP  210  1050  S    L
+```
+---
+```q
+applyKeyToTable[y xkey x]
+```
+```q
+applyKeyToTable[`trade;`sym]                    // alters the underlying table and just returns the table name
+`trade
 
-
-
-
-
-
+trade
+sym| time                          size price side exchange
+---| ------------------------------------------------------
+GE | 2016.04.22D15:02:31.169380000 150  1025  B    N
+BP | 2016.04.22D15:02:31.169380000 210  1050  S    L
+```
 # Joins
-- simple join ,
-- join each (paiwise) a,'b
+- simple join `,`
+- join each (paiwise) `a,'b`
 
 - left join reference table (LHS) must be keyed
 - LJ will included null row values, inner join will not include nulls
