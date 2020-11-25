@@ -351,3 +351,36 @@ q| `int$()
 b| ,101i
 ```
 ---
+# Tables
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Joins
+- simple join ,
+- join each (paiwise) a,'b
+
+- left join reference table (LHS) must be keyed
+- LJ will included null row values, inner join will not include nulls
+- a Keyed time series table (LHS) will key the resulting join time table
+
+- plus join - RHS table must be keyed and must not contain any non-keyed non-numeric cols
+
+- inner join - null values/rows are ommited from the resultant join table
+
+- union join - appends date to the end of the able, both tables must be unkeyed, if one is keyed an error is thrown
+-includes nulls in the resultant table, must make sure the cols match up if they dont itll all be null and appened to end of table
+ 
+- asof - mainly used to get the prevailing quote at the time of a trade, need to define the cols you want to join on
+- wj - can run functions on the join e.g. min, max
+
+Reference guide: https://code.kx.com/q/basics/joins/
