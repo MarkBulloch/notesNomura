@@ -448,6 +448,7 @@ BP | 2016.04.22D15:02:31.169380000 210  1050  S    L
 - wj - can run functions on the join e.g. min, max
 
 Reference guide: https://code.kx.com/q/basics/joins/
+---
 ```q
 keyJoin:{x lj y}    
 ```
@@ -480,7 +481,7 @@ PSN  2.5   300  Construction
 BARC 3.5   400  Banking
 MSFT 4.5   500
 ```
-
+---
 ```q
 keyFilterJoin:{x ij y}
 ```
@@ -493,7 +494,7 @@ BARC 0.5   100  Banking
 PSN  2.5   300  Construction
 BARC 3.5   400  Banking
 ```
-
+---
 ```q
 getPrevailingQuote:{aj[`sym`time;`trade`quote]}
 ```
@@ -512,7 +513,7 @@ IBM 00:06 11 2.5 2.5
 IBM 00:10 8  2.5 2.5
 JPM 00:12 4  4.5 4.5
 ```
-
+---
 ```q
 getPrevailingQuote:{aj[`sym`ex`time;`trade`quote]}
 ```
