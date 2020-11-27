@@ -352,6 +352,7 @@ b| ,101i
 ```
 ---
 # Tables
+```q
 Define the following two tables with the corresponding columns and types:
 
 trade
@@ -372,7 +373,7 @@ bidSize (long)
 askSize (long)
 exchange (symbol)
 Define a variable BATCH and assign it the value 1b (true)
-
+```
 ```q
 trade:flip `time`sym`size`price`side`exchange!"psjjss"$\:()
 quote:flip `time`sym`bid`ask`bidSize`askSize`exchange!"psjjjjs"\:()
