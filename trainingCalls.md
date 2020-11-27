@@ -448,3 +448,87 @@ BP | 2016.04.22D15:02:31.169380000 210  1050  S    L
 - wj - can run functions on the join e.g. min, max
 
 Reference guide: https://code.kx.com/q/basics/joins/
+```q
+keyJoin:{x lj y}    
+```
+Uses left join to include nulls in resultant table
+```q
+N:5
+trade:([]sym:N#`BARC`MSFT`PSN;price:.5+til N;size:100*1+til N)
+trade
+sym  price size
+---------------
+BARC 0.5   100
+MSFT 1.5   200
+PSN  2.5   300
+BARC 3.5   400
+MSFT 4.5   500
+
+ind:([sym:`BARC`PSN]ind:`Banking`Construction)
+ind
+sym | ind
+----| ------------
+BARC| Banking
+PSN | Construction
+
+keyJoin[trade;ind]                    // unsuccessful matches are null
+sym  price size ind
+----------------------------
+BARC 0.5   100  Banking
+MSFT 1.5   200
+PSN  2.5   300  Construction
+BARC 3.5   400  Banking
+MSFT 4.5   500
+```
+
+```q
+keyFilterJoin:{x ij y}
+```
+If unsuccessful matches are not wanted, use an inner join
+```q
+keyFilterJoin[trade;ind]                // unsuccessful matches are omitted
+sym  price size ind
+----------------------------
+BARC 0.5   100  Banking
+PSN  2.5   300  Construction
+BARC 3.5   400  Banking
+```
+
+```q
+getPrevailingQuote:{aj[`sym`time;`trade`quote]}
+```
+uses an asof to show each trade record with the prevailing quote (on any exchange) at the time of each trade, assumes time has been sorted.
+```q
+trade:([]sym:`BP`IBM`IBM`JPM;time:"u"$4.5 6.2 9.8 12;px:5 11 8 4f)                                         
+
+quote:([]sym:`IBM`IBM`JPM`JPM;time:"u"$4 6 6.5 10;bid:.5+1 2 3 4;ask:.5+1 2 3 4) 
+
+getPrevailingQuote[]
+
+sym time  px bid ask
+--------------------
+BP  00:05 5         
+IBM 00:06 11 2.5 2.5
+IBM 00:10 8  2.5 2.5
+JPM 00:12 4  4.5 4.5
+```
+
+```q
+getPrevailingQuote:{aj[`sym`ex`time;`trade`quote]}
+```
+uses another asof join to return a join of the trade and quote table, which shows each trade record with the prevailing quote at the time of each trade on that exchange
+
+```q
+trade:([]sym:`BP`IBM`IBM`JPM;time:"u"$4.5 6.2 9.8 12;px:5 11 8 4f';ex:`A`A`A`B)                                         
+
+quote:([]sym:`IBM`IBM`JPM`JPM;time:"u"$4 6 6.5 10;bid:.5+1 2 3 4;ask:.5+1 2 3 4;ex:`A`A`A`A) 
+
+getPrevailingLocalQuote[]
+
+sym time  px ex bid ask
+-----------------------
+BP  00:05 5  A        
+IBM 00:06 11 A  2.5 2.5
+IBM 00:06 8  A  2.5 2.5
+JPM 00:10 4  B
+```
