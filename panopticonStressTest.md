@@ -18,4 +18,4 @@
 100 mod 10 returns 0
 100 mod 11 returns 1
 
-`if[not 100000 mod i+:1; .lg.o[`panop;"Published 100,000 rows of data"]]` - increment i by 1 and check if 100000 divisible by i - if true log out message
+``if[not 100000 mod i+:1; .lg.o[`panop;"Published 100,000 rows of data"]]`` - increment i by 1 and check if 100000 divisible by i - if true log out message
