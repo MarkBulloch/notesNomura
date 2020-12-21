@@ -135,9 +135,10 @@ Important to note - keep all in one function, avoid setting global variables
 * process - genhousekeeping
 * function - defined as `.hk.buildFromS3.run` (function to actually run tasks)
 * arguments - defined as args(needs to be flipped) - arguments to the function .i.e in this case dates, table, func
+---
 
-
-#Setting up new UAT Stack
+# Setting up new UAT Stack
+## Steps:
 1. Launch using dev-DL-CF-template (launch in 1a) - s3 locator from .util.getLatestUploadedWekaSnapshot[], ami - latest or newly created one
 2. Check all instances started in EC2 console, eg dataplant, eventbus, desired num of queryfarms (specified in template but 8 for prod env and 6 otherwise)
 3. ssh to the dataplant server and check the cloud-init log. /var/log/cloud-init-output.log is the path to the log, or an alias for just viewing it in tail -f mode is cloudinitlog - should see somthing similar to:
