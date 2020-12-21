@@ -135,3 +135,14 @@ Important to note - keep all in one function, avoid setting global variables
 * process - genhousekeeping
 * function - defined as `.hk.buildFromS3.run` (function to actually run tasks)
 * arguments - defined as args(needs to be flipped) - arguments to the function .i.e in this case dates, table, func
+
+
+#Setting up new UAT Stack
+1. Launch using dev-DL-CF-template (launch in 1a) - s3 locator from .util.getLatestUploadedWekaSnapshot[], ami - latest or newly created one
+2. Check all instances started in EC2 console, eg dataplant, eventbus, desired num of queryfarms (specified in template but 8 for prod env and 6 otherwise)
+3. ssh to the dataplant server and check the cloud-init log. /var/log/cloud-init-output.log is the path to the log, or an alias for just viewing it in tail -f mode is cloudinitlog - should see somthing similar to:
+Dec 18 15:46:23 cloud-init[3290]: util.py[DEBUG]: Cloud-init v. 19.3-3.amzn2 finished at Fri, 18 Dec 2020 15:46:23 +0000. Datasource DataSourceEc2.  Up 385.41 seconds
+4.cd $LOG - ensure the pdb starts (comes up, does all it's checks/data changes and runs a commit, logs out the "started on..." message )
+5. Connect to ingress and run post release checks - .gw.postRelease.run[] - some will fail due to no live data and most likely no close data
+6. Flip ENI/ELB - update to use the latest stack (post message into chat) 
+7. Verify query side is using new stack and delete old stack if necessary
