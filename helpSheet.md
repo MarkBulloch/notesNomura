@@ -147,3 +147,10 @@ Dec 18 15:46:23 cloud-init[3290]: util.py[DEBUG]: Cloud-init v. 19.3-3.amzn2 fin
 5. Connect to ingress and run post release checks - .gw.postRelease.run[] - some will fail due to no live data and most likely no close data
 6. Flip ENI/ELB - update to use the latest stack (post message into chat) 
 7. Verify query side is using new stack and delete old stack if necessary
+
+# Comparing on-prem/aws tplogStats
+## Steps:
+
+1. Open handle to each host - red/wok and aws
+2. res:(wok"select logDate, table, wokCnt:tabCount from stats where logDate in 2021.01.13 2021.01.17 2021.01.21 2021.01.25 2021.01.29") lj 2!aws"select logDate, table, tabCountAWS1a:tabCount from stats where logDate in 2021.01.13 2021.01.17 2021.01.21 2021.01.25 2021.01.29, source=`$\1a\""
+3. select from res where not wokCnt=tabCountAWS1a, wokCnt>0, not table in systemtables, dlevents etc
