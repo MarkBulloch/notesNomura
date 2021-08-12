@@ -154,3 +154,12 @@ Dec 18 15:46:23 cloud-init[3290]: util.py[DEBUG]: Cloud-init v. 19.3-3.amzn2 fin
 1. Open handle to each host - red/wok and aws
 2. res:(wok"select logDate, table, wokCnt:tabCount from stats where logDate in 2021.01.13 2021.01.17 2021.01.21 2021.01.25 2021.01.29") lj 2!aws"select logDate, table, tabCountAWS1a:tabCount from stats where logDate in 2021.01.13 2021.01.17 2021.01.21 2021.01.25 2021.01.29, source=`$\1a\""
 3. select from res where not wokCnt=tabCountAWS1a, wokCnt>0, not table in systemtables, dlevents etc
+
+# Set up testplan instance (hacky way)
+## Steps:
+
+1. Copy id_rsa.pub to build server home/user
+2. ssh to build server from dev
+3. launch testplan from util
+4. change ec2-user to lod user and enter password
+5. run manually
