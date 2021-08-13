@@ -163,3 +163,5 @@ Dec 18 15:46:23 cloud-init[3290]: util.py[DEBUG]: Cloud-init v. 19.3-3.amzn2 fin
 3. launch testplan from util
 4. change ec2-user to lod user and enter password
 5. run manually
+
+make chamnges hegreufeiowfio9pwjfipowefnwqe
